@@ -1,14 +1,18 @@
-[gd_scene format=3 uid="uid://csgry3p0ruren"]
+[gd_scene load_steps=2 format=3 uid="uid://csgry3p0ruren"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyq5q"]
+font_size = 12
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 90.0
 offset_bottom = 160.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = -3.0
-offset_top = 7.0
-offset_right = 90.0
-offset_bottom = 33.0
+offset_left = 9.0
+offset_right = 79.0
+offset_bottom = 20.0
 text = "Menu scene"
+label_settings = SubResource("LabelSettings_dyq5q")
