@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxuuh"]
 bg_color = Color(0.211765, 0.211765, 0.211765, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dyq5q"]
+[sub_resource type="LabelSettings" id="LabelSettings_nyjdb"]
 font = ExtResource("1_r8anm")
 font_size = 8
 
@@ -13,20 +13,17 @@ font_size = 8
 texture_filter = 1
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 90.0
-offset_bottom = 160.0
+offset_right = 180.0
+offset_bottom = 320.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mxuuh")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label2" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_right = 23.0
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 10.0
 grow_horizontal = 2
-scale = Vector2(0.1, 0.1)
-text = "Menu scene"
-label_settings = SubResource("LabelSettings_dyq5q")
-visible_ratio = -0.1
+text = "tasd"
+label_settings = SubResource("LabelSettings_nyjdb")
+horizontal_alignment = 1
+vertical_alignment = 1
