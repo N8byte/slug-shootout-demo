@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://csgry3p0ruren"]
+[gd_scene load_steps=4 format=3 uid="uid://csgry3p0ruren"]
+
+[ext_resource type="FontFile" uid="uid://dum0d6yv8lojc" path="res://dogicapixel.ttf" id="1_r8anm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxuuh"]
+bg_color = Color(0.211765, 0.211765, 0.211765, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dyq5q"]
-font_size = 12
+font = ExtResource("1_r8anm")
+font_size = 8
 
 [node name="Node2D" type="Node2D"]
 texture_filter = 1
@@ -9,10 +15,18 @@ texture_filter = 1
 [node name="Panel" type="Panel" parent="."]
 offset_right = 90.0
 offset_bottom = 160.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mxuuh")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 9.0
-offset_right = 79.0
-offset_bottom = 20.0
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 23.0
+offset_bottom = 10.0
+grow_horizontal = 2
+scale = Vector2(0.1, 0.1)
 text = "Menu scene"
 label_settings = SubResource("LabelSettings_dyq5q")
+visible_ratio = -0.1
