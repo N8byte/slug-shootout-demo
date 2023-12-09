@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7jixeu8ppw0c"]
+
+[ext_resource type="Script" path="res://flameo/flameo.gd" id="1_2q6ng"]
+[ext_resource type="Texture2D" uid="uid://bn0ivinlyf33l" path="res://flameo/idle.png" id="2_v06tg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwgvd"]
+atlas = ExtResource("2_v06tg")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np1kv"]
+atlas = ExtResource("2_v06tg")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p5vp"]
+atlas = ExtResource("2_v06tg")
+region = Rect2(0, 16, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eve3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwgvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np1kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p5vp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qepga"]
+size = Vector2(5, 5)
+
+[node name="flameo" type="Node2D"]
+script = ExtResource("1_2q6ng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eve3k")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="." groups=["slug"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 1.5)
+shape = SubResource("RectangleShape2D_qepga")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

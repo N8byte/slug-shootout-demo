@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf06hnnkedwhl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6qexr"]
+
+[node name="bad" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, -1, 1, 0, 0, 1, -1, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("SphereMesh_6qexr")

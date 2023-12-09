@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1swxdawg0pjc"]
+
+[ext_resource type="Texture2D" uid="uid://dhvwkus7rf70u" path="res://player/Untitled.png" id="1_0grnr"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_re2lx"]
+[ext_resource type="PackedScene" uid="uid://cyvo7er3balp4" path="res://flameo/flying.tscn" id="2_m1xbq"]
+[ext_resource type="Texture2D" uid="uid://crrgkmm0mixho" path="res://player/run.png" id="3_fdrq4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swkey"]
+atlas = ExtResource("1_0grnr")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vm0c"]
+atlas = ExtResource("1_0grnr")
+region = Rect2(0, 10, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouexa"]
+atlas = ExtResource("1_0grnr")
+region = Rect2(0, 20, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0d1a"]
+atlas = ExtResource("3_fdrq4")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2xrg"]
+atlas = ExtResource("3_fdrq4")
+region = Rect2(0, 20, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6oqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swkey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vm0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouexa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0d1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2xrg")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5pr5"]
+size = Vector2(8, 10)
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(33, 28)
+script = ExtResource("1_re2lx")
+slugsFlying = Array[PackedScene]([ExtResource("2_m1xbq")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u6oqd")
+animation = &"run"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f5pr5")
