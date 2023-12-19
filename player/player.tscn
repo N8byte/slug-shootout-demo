@@ -50,14 +50,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 4.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5pr5"]
 size = Vector2(8, 10)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(33, 28)
+motion_mode = 1
 script = ExtResource("1_re2lx")
 slugsFlying = Array[PackedScene]([ExtResource("2_m1xbq")])
 

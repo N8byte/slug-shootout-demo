@@ -10,15 +10,17 @@ enum PLAYER_NUM {ONE = 1, TWO = 2}
 var direction := Vector2.ZERO
 var speed := 50.0
 enum FIRE_STATES { START, FIRST_PRESS, SECOND_PRESS }
+enum DIRECTION {LEFT, RIGHT, UP, DOWN}
 var currentFireState := FIRE_STATES.START
-var prevKey := -1
+var prevKey := ""
 var canFire := false
 var fireFirstKeyPress := 0
 
 
 func _unhandled_key_input(_event : InputEvent):
 	var event := _event as InputEventKey
-	var keys = {
+	
+	var keys := {
 		left = "left%s" % playerNum,
 		right = "right%s" % playerNum,
 		up = "up%s" % playerNum,
@@ -30,29 +32,24 @@ func _unhandled_key_input(_event : InputEvent):
 			event.is_action(keys.up) or \
 			event.is_action(keys.down)):
 		return
-
-	# set direction
+	
+	# set move direction
 	direction = Input.get_vector(
 		keys.left, keys.right, keys.up, keys.down
 	).normalized()
-
+	
 	# Fire
 	var fireKeyDelta := Time.get_ticks_msec() - fireFirstKeyPress
-	# key down
-	if event.is_pressed():
-		# first key press
-		if !canFire or fireKeyDelta > FIRE_KEY_DELAY:
-			fireFirstKeyPress = Time.get_ticks_msec()
-			currentFireState = FIRE_STATES.FIRST_PRESS
-		# second key press
-		elif event.physical_keycode == prevKey:
-			fire()
-			prevKey = -1
-		canFire = false
-	# key up
-	else:
-		canFire = true
-	prevKey = event.physical_keycode
+	for key in keys.values():
+		if Input.is_action_just_pressed(key):
+			if prevKey == key && fireKeyDelta < FIRE_KEY_DELAY:
+				fire()
+				prevKey = ""
+			else:
+				prevKey = key
+				fireFirstKeyPress = Time.get_ticks_msec()
+		elif Input.is_action_just_released(key):
+			prevKey = key
 
 	# Animations
 	sprite.animation = &"run" if direction else &"idle"
@@ -64,7 +61,8 @@ func _unhandled_key_input(_event : InputEvent):
 	get_viewport().set_input_as_handled()
 
 func _physics_process(delta : float):
-	move_and_collide(direction * delta * speed)
+	velocity = direction * speed
+	move_and_slide()
 
 func collectSlug(slug : Node2D):
 	slugs.append(slug.getSlug())
@@ -72,6 +70,9 @@ func collectSlug(slug : Node2D):
 	slug.queue_free()
 
 func fire():
+	if direction == Vector2.ZERO:
+		return
+	
 	print("fire!")
 	var slug = slugs.pop_front()
 	if slug == null:

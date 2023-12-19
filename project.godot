@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Slug-shootout-demo"
 run/main_scene="res://main/main.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 
 [autoload]
 
@@ -22,7 +22,6 @@ Global="*res://global.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
-window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale=8.0
 window/vsync/vsync_mode=0
