@@ -1,2 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
+slug-shootout-demo.exe
+slug-shoutout-demo.console.exe
