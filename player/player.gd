@@ -19,7 +19,7 @@ var fireFirstKeyPress := 0
 
 func _unhandled_key_input(_event : InputEvent):
 	var event := _event as InputEventKey
-	
+
 	var keys := {
 		left = "left%s" % playerNum,
 		right = "right%s" % playerNum,
@@ -32,12 +32,12 @@ func _unhandled_key_input(_event : InputEvent):
 			event.is_action(keys.up) or \
 			event.is_action(keys.down)):
 		return
-	
+
 	# set move direction
 	direction = Input.get_vector(
 		keys.left, keys.right, keys.up, keys.down
 	).normalized()
-	
+
 	# Fire
 	var fireKeyDelta := Time.get_ticks_msec() - fireFirstKeyPress
 	for key in keys.values():
@@ -60,7 +60,7 @@ func _unhandled_key_input(_event : InputEvent):
 
 	get_viewport().set_input_as_handled()
 
-func _physics_process(delta : float):
+func _physics_process(_delta : float):
 	velocity = direction * speed
 	move_and_slide()
 
@@ -72,7 +72,7 @@ func collectSlug(slug : Node2D):
 func fire():
 	if direction == Vector2.ZERO:
 		return
-	
+
 	print("fire!")
 	var slug = slugs.pop_front()
 	if slug == null:
